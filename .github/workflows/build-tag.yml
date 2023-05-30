@@ -8,7 +8,7 @@ name: Build Android apk by tag
 on:
   push:
     tags:
-      - v*
+      - '*.*.*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
