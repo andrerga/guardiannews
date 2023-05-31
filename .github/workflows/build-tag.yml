@@ -23,7 +23,8 @@ jobs:
       - name: GitHub Tag Name example
         run: |
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+          echo "Tag name from github.ref_name: ${{ github.ref_name }}"
+          echo "Test version ${{ steps.previous_step.outputs.version }}"
 #      # Checkout pull request branch
 #      - name: Checkout code
 #        uses: actions/checkout@v3
