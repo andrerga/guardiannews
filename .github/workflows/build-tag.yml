@@ -47,7 +47,8 @@ jobs:
       # For the build number, will use the number of commits
       - name: Version the app based on tag
         run: |
-          sed '/version:/s/.*/version: ${{ github.ref_name }}+${{ git log --oneline | wc -l }}/' pubspec.yaml
+          count=git log --oneline | wc -l
+          sed '/version:/s/.*/version: ${{ github.ref_name }}+$count/' pubspec.yaml
           cat pubspec.yaml
 
       # Once Flutter is installed, run pub get to fetch the app's dependencies.
