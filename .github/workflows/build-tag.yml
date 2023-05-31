@@ -20,11 +20,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#      - name: GitHub Tag Name example
-#        run: |
-#          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-#          echo "Tag name from github.ref_name: ${{ github.ref_name }}"
-#          echo "Test version ${{ steps.previous_step.outputs.version }}"
       # Checkout pull request branch
       - name: Checkout code
         uses: actions/checkout@v3
@@ -52,6 +47,7 @@ jobs:
           count=`git log --oneline | wc -l | xargs`
           new_version="version: ${{ github.ref_name }}+${count}"
           sed -i -r "/version:/s/.*/$new_version/" pubspec.yaml
+          cat pubspec.yaml
 
       # Once Flutter is installed, run pub get to fetch the app's dependencies.
       # Since Lint check is already run on pull request, this yml should be focused on building app
