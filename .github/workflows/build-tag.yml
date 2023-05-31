@@ -64,12 +64,12 @@ jobs:
 
       # Builds apk
       - name: Build apk
-        run: flutter build apk --release
+        run: flutter build apk --release --flavor prod
 
       # Upload apk to release
       - name: Upload apk
         uses: actions/upload-artifact@v1
         with:
           name: v${{ github.ref_name }}.apk
-          path: build/app/outputs/flutter-apk/v${{ github.ref_name }}.apk
+          path: build/app/outputs/apk/prod/release/v${{ github.ref_name }}.apk
           overwrite: true
