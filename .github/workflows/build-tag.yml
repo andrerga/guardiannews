@@ -47,6 +47,9 @@ jobs:
       # For the build number, will use the number of commits
       - name: Version the app based on tag
         run: |
+          git --version
+          git status
+          
           $count = git log --oneline | wc -l
           echo $count
           $version = ${{ github.ref_name }}
