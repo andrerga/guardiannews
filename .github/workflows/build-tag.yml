@@ -49,7 +49,6 @@ jobs:
         run: |
           $count = git log --oneline | wc -l
           $version = ${{ github.ref_name }}
-          sed '/version:/s/.*/version: $version+$count/' pubspec.yaml
           cat pubspec.yaml
 
       # Once Flutter is installed, run pub get to fetch the app's dependencies.
