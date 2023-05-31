@@ -48,7 +48,9 @@ jobs:
       - name: Version the app based on tag
         run: |
           $count = git log --oneline | wc -l
+          echo $count
           $version = ${{ github.ref_name }}
+          echo $version
           cat pubspec.yaml
 
       # Once Flutter is installed, run pub get to fetch the app's dependencies.
