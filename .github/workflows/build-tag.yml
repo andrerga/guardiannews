@@ -43,6 +43,15 @@ jobs:
           channel: 'stable'
           cache: true
 
+      # Version app based on tag
+      # For the build number, will use the number of commits
+      - name: Version the app based on tag
+        run: |
+          $count = git log --oneline | wc -l
+          $version = ${{ github.ref_name }}
+          sed '/version:/s/.*/version: $version+$count/' pubspec.yaml
+          cat pubspec.yaml
+
       # Once Flutter is installed, run pub get to fetch the app's dependencies.
       # Since Lint check is already run on pull request, this yml should be focused on building app
       - name: Install dependencies
@@ -55,15 +64,6 @@ jobs:
       # Uncomment this step to verify the use of 'dart format' on each commit.
       - name: Verify formatting
         run: dart format --set-exit-if-changed --output=none .
-
-      # Version app based on tag
-      # For the build number, will use the number of commits
-      - name: Version the app based on tag
-        run: |
-          $count = git log --oneline | wc -l
-          $version = ${{ github.ref_name }}
-          sed '/version:/s/.*/version: $version+$count/' pubspec.yaml
-          cat pubspec.yaml
 
 #      # Builds apk
 #      - name: Build apk
